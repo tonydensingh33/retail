@@ -1,0 +1,49 @@
+create external table retail(
+Invoice string,
+StockCode string,
+Description string,
+Quantity string,
+Invoice_Date string,
+Price string,
+Customer_ID string,
+Country string)
+row format delimited 
+fields terminated by ','
+stored as textfile
+location '/home/bigdatapedia/data/retail'
+TBLPROPERTIES(
+'skip.header.line.count'='1');
+
+create external table retail_parq(
+Invoice string,
+StockCode string,
+Description string,
+Quantity string,
+Price string,
+Customer_ID string,
+Country string,
+Invoice_Date string)
+partitioned by(
+year string,
+month string,
+day string)
+row format delimited 
+fields terminated by ','
+stored as parquet
+location '/home/bigdatapedia/data/retail_parq';
+
+
+insert into retail_parq partition(year,month,day) select 
+Invoice,
+StockCode,
+Description,
+Quantity,
+Price,
+Customer_ID,
+Country,
+Invoice_Date,
+substr(trim(Invoice_Date),7,4) as year,
+substr(trim(Invoice_Date),4,2) as month,
+substr(trim(Invoice_Date),1,2) as day
+from retail
+WHERE Invoice IN('536365','536368','536370');
