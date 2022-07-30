@@ -47,3 +47,5 @@ substr(trim(Invoice_Date),4,2) as month,
 substr(trim(Invoice_Date),1,2) as day
 from retail
 WHERE Invoice IN('536365','536368','536370');
+
+use testdb:
