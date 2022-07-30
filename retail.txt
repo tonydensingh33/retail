@@ -49,6 +49,6 @@ from retail
 WHERE Invoice IN('536365','536368','536370');
 
 
-hi 
-hello 
-how are u
+
+use testdb:
+
