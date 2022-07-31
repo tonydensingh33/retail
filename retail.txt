@@ -53,6 +53,4 @@ WHERE Invoice IN('536365','536368','536370');
 use testdb;
 
 by
-tony densingh
-
-30-07-2022
+tony densingh F
